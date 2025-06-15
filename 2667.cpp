@@ -7,7 +7,7 @@ using namespace std;
 
 int cnt = 0;
 
-void bfs(vector<vector<bool>>& visited, vector<vector<int>>& vec, int n, int r, int c)
+void dfs(vector<vector<bool>>& visited, vector<vector<int>>& vec, int n, int r, int c)
 {
 	if (visited[r][c] == true || vec[r][c] == 0)
 		return;
@@ -16,13 +16,13 @@ void bfs(vector<vector<bool>>& visited, vector<vector<int>>& vec, int n, int r, 
 	cnt++;
 
 	if(r < n-1)
-		bfs(visited, vec, n, r+1, c);
+		dfs(visited, vec, n, r+1, c);
 	if (r > 0)
-		bfs(visited, vec, n, r - 1, c);
+		dfs(visited, vec, n, r - 1, c);
 	if(c < n-1)
-		bfs(visited, vec, n, r, c + 1);
+		dfs(visited, vec, n, r, c + 1);
 	if (c > 0)
-		bfs(visited, vec, n, r, c - 1);
+		dfs(visited, vec, n, r, c - 1);
 }
 int main()
 {
@@ -48,7 +48,7 @@ int main()
 		{
 			if (vec[r][c] == 1)
 			{
-				bfs(visited, vec, n, r, c);
+				dfs(visited, vec, n, r, c);
 
 				if (cnt > 0)
 					result.push_back(cnt);
