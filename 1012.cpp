@@ -2,14 +2,12 @@
 #include "vector"
 using namespace std;
 
-bool check = false;
 void dfs(vector<vector<bool>>& vec, vector<vector<bool>>& visited, int r, int c, int m, int n)
 {
-	if (vec[r][c] == false || visited[r][c] == true)
+	if(vec[r][c] == false || visited[r][c] == true)
 		return;
 
 	visited[r][c] = true;
-	check = true;
 
 	if (r > 0)
 		dfs(vec, visited, r - 1, c, m, n);
@@ -20,6 +18,7 @@ void dfs(vector<vector<bool>>& vec, vector<vector<bool>>& visited, int r, int c,
 	if (c <  n - 1)
 		dfs(vec, visited, r, c + 1, m, n);
 }
+
 int main()
 {
 	int t, m, n, k;
@@ -46,10 +45,11 @@ int main()
 		{
 			for (int k = 0; k < n; k++)
 			{
-				dfs(vec, visited, j, k, m, n);
-				if (check == true)
+				if (vec[j][k] == true && visited[j][k] == false)
+				{
+					dfs(vec, visited, j, k, m, n);
 					cnt++;
-				check = false;
+				}	
 			}
 		}
 		result.push_back(cnt);
